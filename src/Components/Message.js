@@ -1,10 +1,6 @@
 import React from 'react'
 
 const Message = ({ message, toggleClass }) => {
-  let isSelected = ''
-  if (message.selected === true) {
-    isSelected = 'selected'
-  }
   const readClass = message.read ? 'read' : 'unread'
   const selectedClass = message.selected ? 'selected' : ''
   const starredClass = message.starred ? 'fa-star' : 'fa-star-o'

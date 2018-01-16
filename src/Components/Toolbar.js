@@ -1,6 +1,10 @@
 import React from 'react'
-const gottaCheckEmAll = 
-const Toolbar = () => {
+const Toolbar = ({ messageBox, bulkSelect, message }) => {
+  const selectButtonClass = [
+    'fa fa-check-square-o',
+    'fa fa-minus-square-o',
+    'fa fa-square-o'
+  ]
   return (
     <div className="row toolbar">
       <div className="col-md-12">
@@ -10,7 +14,8 @@ const Toolbar = () => {
         </p>
 
         <button className="btn btn-default">
-          <i className="fa fa-square-o" />
+          <i className={`${selectButtonClass[bulkSelect]}`} onClick={messageBox}>
+          </i>
         </button>
 
         <button className="btn btn-default" disabled="disabled">

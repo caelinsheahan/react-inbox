@@ -2,26 +2,26 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div class="navbar navbar-default" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
+    <div className="navbar navbar-default" role="navigation">
+      <div className="container">
+        <div className="navbar-header">
           <button
             type="button"
-            class="navbar-toggle collapsed"
+            className="navbar-toggle collapsed"
             data-toggle="collapse"
             data-target=".navbar-collapse"
           >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar" />
-            <span class="icon-bar" />
-            <span class="icon-bar" />
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar" />
+            <span className="icon-bar" />
+            <span className="icon-bar" />
           </button>
-          <a class="navbar-brand" href="/">
+          <a className="navbar-brand" href="/">
             Inbox Styleguide
           </a>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+        <div className="collapse navbar-collapse">
+          <ul className="nav navbar-nav">
             <li>
               <a href="/">Components</a>
             </li>
