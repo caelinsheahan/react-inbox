@@ -1,5 +1,5 @@
 import React from 'react'
-const Toolbar = ({ messageBox, bulkSelect, message }) => {
+const Toolbar = ({ messageBox, gottaCheckEmAll }) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
     'fa fa-minus-square-o',
@@ -14,8 +14,10 @@ const Toolbar = ({ messageBox, bulkSelect, message }) => {
         </p>
 
         <button className="btn btn-default">
-          <i className={`${selectButtonClass[bulkSelect]}`} onClick={messageBox}>
-          </i>
+          <i
+            className={`${selectButtonClass[messageBox()]}`}
+            onClick={gottaCheckEmAll}
+          />
         </button>
 
         <button className="btn btn-default" disabled="disabled">

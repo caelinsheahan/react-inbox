@@ -17,45 +17,59 @@ class App extends Component {
     newMessages[index][class1] = !newMessages[index][class1]
     this.setState({ messages: newMessages })
   }
-  messageBox = (message, class1) => {
-    const newMessages = this.state.messages.slice(0)
-    let counterTrue = 0
-    let counterFalse = 0
-    for (let i = 0; i < newMessages.length; i++) {
-      if (newMessages[class1] === true) {
-        counterTrue += 1
-        console.log('true')
-      }
-      if (newMessages[class1] === false) {
-        console.log('false')
-        counterFalse += 1
-      }
-    }
-    if (counterTrue === newMessages.length) {
-      // all selected
-      this.setState({ bulkSelect: 0 })
-    }
-    if (counterFalse > 0) {
-      // some selected
-      this.setState({ bulkSelect: 1 })
-    }
-    if (counterTrue === 0) {
-      // none selected
-      this.setState({ bulkSelect: 2 })
-    }
-    // compare the number of checked messages, if the number of checked = arr.length, make them unchecked.
-    // If there are less messages then the array.length, make them checked
-  }
+  messageBox = () => {
+    const selectAll = 0
+    const selectSome = 1
+    const selectNone = 2
 
+    let countTrue = 0
+    let countFalse = 0
+
+    for (let i = 0; i < this.state.messages.length; i++) {
+      let selectIt = this.state.messages[i]['selected']
+      if (selectIt === true) {
+        console.log('I am in true')
+        countTrue++
+      } else {
+        console.log('I am in false')
+        countFalse++
+      }
+    }
+
+    if (countTrue > 0 && countFalse > 0) {
+      return selectSome
+    } else if (countTrue === this.state.messages.length) {
+      return selectAll
+    } else {
+      return selectNone
+    }
+  }
+  gottaCheckEmAll = () => {
+    const newMessages = this.state.messages.slice(0)
+    if (this.messageBox() === 0) {
+      for (let i = 0; i < newMessages.length; i++) {
+        newMessages[i]['selected'] = false
+      }
+    } else if (this.messageBox() === 1) {
+      for (let i = 0; i < newMessages.length; i++) {
+        newMessages[i]['selected'] = true
+      }
+    } else if (this.messageBox() === 2) {
+      for (let i = 0; i < newMessages.length; i++) {
+      newMessages[i]['selected'] = true
+      }
+    }
+    this.setState({messages: newMessages})
+  }
   render() {
     return (
       <div className="App">
         <Navbar />
-
         <div className="container">
           <Toolbar
             messageBox={this.messageBox}
-            bulkSelect={this.state.bulkSelect}
+            messages={this.state.messages}
+            gottaCheckEmAll={this.gottaCheckEmAll}
           />
           <MessagesList
             messages={this.state.messages}
@@ -131,5 +145,7 @@ const messages = [
     labels: []
   }
 ]
-
+//<router>
+//<Route exact path = "/" render{() => {
+//}}
 export default App
