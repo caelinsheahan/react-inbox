@@ -12,12 +12,14 @@ class App extends Component {
     }
   }
   toggleClass = (message, class1) => {
+    console.log('in toggleClass')
     const index = this.state.messages.indexOf(message)
     const newMessages = this.state.messages.slice(0)
     newMessages[index][class1] = !newMessages[index][class1]
     this.setState({ messages: newMessages })
   }
   messageBox = () => {
+console.log('in messageBox');
     const selectAll = 0
     const selectSome = 1
     const selectNone = 2
@@ -28,10 +30,10 @@ class App extends Component {
     for (let i = 0; i < this.state.messages.length; i++) {
       let selectIt = this.state.messages[i]['selected']
       if (selectIt === true) {
-        console.log('I am in true')
+        console.log('counting true')
         countTrue++
       } else {
-        console.log('I am in false')
+        console.log('counting false')
         countFalse++
       }
     }
@@ -45,6 +47,7 @@ class App extends Component {
     }
   }
   gottaCheckEmAll = () => {
+    console.log('inGottaCatchEmAll');
     const newMessages = this.state.messages.slice(0)
     if (this.messageBox() === 0) {
       for (let i = 0; i < newMessages.length; i++) {
@@ -56,11 +59,12 @@ class App extends Component {
       }
     } else if (this.messageBox() === 2) {
       for (let i = 0; i < newMessages.length; i++) {
-      newMessages[i]['selected'] = true
+        newMessages[i]['selected'] = true
       }
     }
-    this.setState({messages: newMessages})
+    this.setState({ messages: newMessages })
   }
+
   render() {
     return (
       <div className="App">

@@ -13,10 +13,9 @@ const Toolbar = ({ messageBox, gottaCheckEmAll }) => {
           unread messages
         </p>
 
-        <button className="btn btn-default">
+        <button className="btn btn-default" onClick={gottaCheckEmAll}>
           <i
             className={`${selectButtonClass[messageBox()]}`}
-            onClick={gottaCheckEmAll}
           />
         </button>
 
