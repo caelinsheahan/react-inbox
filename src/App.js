@@ -3,6 +3,7 @@ import './App.css'
 import MessagesList from './Components/MessagesList'
 import Toolbar from './Components/Toolbar'
 import Navbar from './Components/Navbar'
+// import Router from
 class App extends Component {
   constructor(props) {
     super(props)
@@ -30,10 +31,8 @@ class App extends Component {
     for (let i = 0; i < this.state.messages.length; i++) {
       const selectIt = this.state.messages[i]['selected']
       if (selectIt === true) {
-        console.log('counting true')
         countTrue++
       } else {
-        console.log('counting false')
         countFalse++
       }
     }
@@ -47,7 +46,6 @@ class App extends Component {
     }
   }
   gottaCheckEmAll = () => {
-    console.log('inGottaCatchEmAll')
     const newMessages = this.state.messages.slice(0)
     if (this.messageBox() === 0) {
       for (let i = 0; i < newMessages.length; i++) {
@@ -96,17 +94,57 @@ class App extends Component {
     }
     this.setState({ messages: newMessages })
   }
-countUnread = () => {
-const newMessages = this.state.messages.slice(0)
-let count = 0
-for (let i = 0; i < newMessages.length; i++) {
-  if (newMessages[i]['read'] === false) {
-    count += 1
-  } else {
+  countUnread = () => {
+    const newMessages = this.state.messages.slice(0)
+    let count = 0
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['read'] === false) {
+        count += 1
+      } else {
+      }
+    }
+    return count
   }
-}
-return count
-}
+  addLabel = label => {
+    console.log(label)
+    const newMessages = this.state.messages.slice(0)
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['labels'][0] === label) {
+        newMessages[i]['labels'].splice(0, 1)
+      }
+      if (newMessages[i]['labels'][1] === label) {
+        newMessages[i]['labels'].splice(1, 1)
+      }
+      if (newMessages[i]['labels'][2] === label) {
+        newMessages[i]['labels'].splice(2, 1)
+      } else if (
+        newMessages[i]['selected'] === true &&
+        newMessages[i]['labels'].includes(label) === false
+      ) {
+        newMessages[i]['labels'].push(label)
+      } else {
+      }
+    }
+    this.setState({ messages: newMessages })
+  }
+  removeLabel = label => {
+    const newMessages = this.state.messages.slice(0)
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['selected'] === true) {
+        if (newMessages[i]['labels'][0] === label) {
+          newMessages[i]['labels'].splice(0, 1)
+        }
+        if (newMessages[i]['labels'][1] === label) {
+          newMessages[i]['labels'].splice(1, 1)
+        }
+        if (newMessages[i]['labels'][2] === label) {
+          newMessages[i]['labels'].splice(2, 1)
+        }
+      } else {
+      }
+    }
+    this.setState({ messages: newMessages })
+  }
 
   render() {
     return (
@@ -121,6 +159,8 @@ return count
             unreadAll={this.unreadAll}
             del={this.del}
             countUnread={this.countUnread}
+            addLabel={this.addLabel}
+            removeLabel={this.removeLabel}
           />
           <MessagesList
             messages={this.state.messages}

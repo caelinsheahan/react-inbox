@@ -1,5 +1,14 @@
 import React from 'react'
-const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del, countUnread }) => {
+const Toolbar = ({
+  messageBox,
+  gottaCheckEmAll,
+  unreadAll,
+  readAll,
+  del,
+  countUnread,
+  addLabel,
+  removeLabel
+}) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
     'fa fa-minus-square-o',
@@ -14,9 +23,7 @@ const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del, countUn
         </p>
 
         <button className="btn btn-default" onClick={gottaCheckEmAll}>
-          <i
-            className={`${selectButtonClass[messageBox()]}`}
-          />
+          <i className={`${selectButtonClass[messageBox()]}`} />
         </button>
 
         <button className="btn btn-default" onClick={readAll}>
@@ -27,18 +34,34 @@ const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del, countUn
           Mark As Unread
         </button>
 
-        <select className="form-control label-select" disabled="disabled">
-          <option>Apply label</option>
+        <select className="form-control label-select" onChange={(e) => {
+              addLabel(e.target.value)
+          }}>
+          <option value = ''>Apply label</option>
           <option value="dev">dev</option>
-          <option value="personal">personal</option>
-          <option value="gschool">gschool</option>
+        <option value="personal">personal</option>
+        <option value="gschool">gschool</option>
         </select>
 
-        <select className="form-control label-select" disabled="disabled">
+        <select className="form-control label-select" onChange={(e) => {
+              removeLabel(e.target.value)
+          }}>
           <option>Remove label</option>
-          <option value="dev">dev</option>
-          <option value="personal">personal</option>
-          <option value="gschool">gschool</option>
+          <option
+            value="dev"
+          >
+            dev
+          </option>
+          <option
+            value="personal"
+          >
+            personal
+          </option>
+          <option
+            value="gschool"
+          >
+            gschool
+          </option>
         </select>
 
         <button className="btn btn-default" onClick={del}>
