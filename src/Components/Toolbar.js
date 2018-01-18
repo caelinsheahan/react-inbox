@@ -1,5 +1,5 @@
 import React from 'react'
-const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del }) => {
+const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del, countUnread }) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
     'fa fa-minus-square-o',
@@ -9,7 +9,7 @@ const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del }) => {
     <div className="row toolbar">
       <div className="col-md-12">
         <p className="pull-right">
-          <span className="badge badge">2</span>
+          <span className="badge badge">{countUnread()}</span>
           unread messages
         </p>
 

@@ -96,6 +96,17 @@ class App extends Component {
     }
     this.setState({ messages: newMessages })
   }
+countUnread = () => {
+const newMessages = this.state.messages.slice(0)
+let count = 0
+for (let i = 0; i < newMessages.length; i++) {
+  if (newMessages[i]['read'] === false) {
+    count += 1
+  } else {
+  }
+}
+return count
+}
 
   render() {
     return (
@@ -109,6 +120,7 @@ class App extends Component {
             readAll={this.readAll}
             unreadAll={this.unreadAll}
             del={this.del}
+            countUnread={this.countUnread}
           />
           <MessagesList
             messages={this.state.messages}
