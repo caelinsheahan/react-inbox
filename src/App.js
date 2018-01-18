@@ -19,7 +19,7 @@ class App extends Component {
     this.setState({ messages: newMessages })
   }
   messageBox = () => {
-console.log('in messageBox');
+    console.log('in messageBox')
     const selectAll = 0
     const selectSome = 1
     const selectNone = 2
@@ -28,7 +28,7 @@ console.log('in messageBox');
     let countFalse = 0
 
     for (let i = 0; i < this.state.messages.length; i++) {
-      let selectIt = this.state.messages[i]['selected']
+      const selectIt = this.state.messages[i]['selected']
       if (selectIt === true) {
         console.log('counting true')
         countTrue++
@@ -47,7 +47,7 @@ console.log('in messageBox');
     }
   }
   gottaCheckEmAll = () => {
-    console.log('inGottaCatchEmAll');
+    console.log('inGottaCatchEmAll')
     const newMessages = this.state.messages.slice(0)
     if (this.messageBox() === 0) {
       for (let i = 0; i < newMessages.length; i++) {
@@ -65,6 +65,28 @@ console.log('in messageBox');
     this.setState({ messages: newMessages })
   }
 
+  readAll = () => {
+    const newMessages = this.state.messages.slice(0)
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['selected'] === true) {
+        newMessages[i]['read'] = true
+      } else {
+      }
+    }
+    this.setState({ messages: newMessages })
+  }
+
+  unreadAll = () => {
+    const newMessages = this.state.messages.slice(0)
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['selected'] === true) {
+        newMessages[i]['read'] = false
+      } else {
+      }
+    }
+    this.setState({ messages: newMessages })
+  }
+
   render() {
     return (
       <div className="App">
@@ -74,6 +96,8 @@ console.log('in messageBox');
             messageBox={this.messageBox}
             messages={this.state.messages}
             gottaCheckEmAll={this.gottaCheckEmAll}
+            readAll ={this.readAll}
+            unreadAll={this.unreadAll}
           />
           <MessagesList
             messages={this.state.messages}
@@ -149,7 +173,7 @@ const messages = [
     labels: []
   }
 ]
-//<router>
-//<Route exact path = "/" render{() => {
-//}}
+// <router>
+// <Route exact path = "/" render{() => {
+// }}
 export default App

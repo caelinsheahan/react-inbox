@@ -1,5 +1,5 @@
 import React from 'react'
-const Toolbar = ({ messageBox, gottaCheckEmAll }) => {
+const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll }) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
     'fa fa-minus-square-o',
@@ -19,11 +19,11 @@ const Toolbar = ({ messageBox, gottaCheckEmAll }) => {
           />
         </button>
 
-        <button className="btn btn-default" disabled="disabled">
+        <button className="btn btn-default" onClick={readAll}>
           Mark As Read
         </button>
 
-        <button className="btn btn-default" disabled="disabled">
+        <button className="btn btn-default" onClick={unreadAll}>
           Mark As Unread
         </button>
 
