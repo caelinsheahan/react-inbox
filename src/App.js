@@ -86,6 +86,16 @@ class App extends Component {
     }
     this.setState({ messages: newMessages })
   }
+  del = () => {
+    const newMessages = this.state.messages.slice(0)
+    for (let i = 0; i < newMessages.length; i++) {
+      if (newMessages[i]['selected'] === true) {
+        newMessages.splice(i, 1)
+      } else {
+      }
+    }
+    this.setState({ messages: newMessages })
+  }
 
   render() {
     return (
@@ -96,8 +106,9 @@ class App extends Component {
             messageBox={this.messageBox}
             messages={this.state.messages}
             gottaCheckEmAll={this.gottaCheckEmAll}
-            readAll ={this.readAll}
+            readAll={this.readAll}
             unreadAll={this.unreadAll}
+            del={this.del}
           />
           <MessagesList
             messages={this.state.messages}

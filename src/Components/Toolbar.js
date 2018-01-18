@@ -1,5 +1,5 @@
 import React from 'react'
-const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll }) => {
+const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll, del }) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
     'fa fa-minus-square-o',
@@ -41,7 +41,7 @@ const Toolbar = ({ messageBox, gottaCheckEmAll, unreadAll, readAll }) => {
           <option value="gschool">gschool</option>
         </select>
 
-        <button className="btn btn-default" disabled="disabled">
+        <button className="btn btn-default" onClick={del}>
           <i className="fa fa-trash-o" />
         </button>
       </div>
