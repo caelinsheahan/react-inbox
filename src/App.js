@@ -145,7 +145,13 @@ class App extends Component {
     }
     this.setState({ messages: newMessages })
   }
-
+  async getMessage() {
+    const response = await fetch(
+      'http://localhost:8082/messages'
+    )
+    const json = await response.json()
+    this.setState((messages: json))
+  }
   render() {
     return (
       <div className="App">

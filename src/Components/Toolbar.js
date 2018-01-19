@@ -22,6 +22,10 @@ const Toolbar = ({
           unread messages
         </p>
 
+        <button className="btn btn-danger" >
+          <i className="fa fa-plus"/>
+        </button>
+
         <button className="btn btn-default" onClick={gottaCheckEmAll}>
           <i className={`${selectButtonClass[messageBox()]}`} />
         </button>
