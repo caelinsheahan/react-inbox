@@ -7,7 +7,8 @@ const Toolbar = ({
   del,
   countUnread,
   addLabel,
-  removeLabel
+  removeLabel,
+  Compose
 }) => {
   const selectButtonClass = [
     'fa fa-check-square-o',
