@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
 const Toolbar = ({
   messageBox,
   gottaCheckEmAll,
@@ -23,9 +24,9 @@ const Toolbar = ({
           unread messages
         </p>
 
-        <button className="btn btn-danger" >
+        <Link className="btn btn-danger" to="/compose">
           <i className="fa fa-plus"/>
-        </button>
+        </Link>
 
         <button className="btn btn-default" onClick={gottaCheckEmAll}>
           <i className={`${selectButtonClass[messageBox()]}`} />

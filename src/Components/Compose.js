@@ -1,39 +1,39 @@
 import React from 'react'
-const Compose = () => {
+const Compose = ({newMessage, messages}) => {
   return (
-    <form class="form-horizontal well">
-      <div class="form-group">
-        <div class="col-sm-8 col-sm-offset-2">
+    <form className="form-horizontal well"  onClick={(e)=>newMessage(e,"banana", "apple")}>
+      <div className="form-group">
+        <div className="col-sm-8 col-sm-offset-2">
           <h4>Compose Message</h4>
         </div>
       </div>
-      <div class="form-group">
-        <label for="subject" class="col-sm-2 control-label">
+      <div className="form-group">
+        <label htmlFor="subject" className="col-sm-2 control-label">
           Subject
         </label>
-        <div class="col-sm-8">
+        <div className="col-sm-8">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="subject"
             placeholder="Enter a subject"
             name="subject"
           />
         </div>
       </div>
-      <div class="form-group">
-        <label for="body" class="col-sm-2 control-label">
+      <div className="form-group">
+        <label for="body" className="col-sm-2 control-label">
           Body
         </label>
-        <div class="col-sm-8">
-          <textarea name="body" id="body" class="form-control" />
+        <div className="col-sm-8">
+          <textarea name="body" id="body" className="form-control" />
         </div>
       </div>
-      <div class="form-group">
-        <div class="col-sm-8 col-sm-offset-2">
-          <input type="submit" value="Send" class="btn btn-primary" />
+      <div className="form-group">
+        <div className="col-sm-8 col-sm-offset-2">
+          <input value="Send" className="btn btn-primary"/>
         </div>
-      </div>1
+      </div>
     </form>
   )
 }

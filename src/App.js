@@ -3,7 +3,8 @@ import './App.css'
 import MessagesList from './Components/MessagesList'
 import Toolbar from './Components/Toolbar'
 import Navbar from './Components/Navbar'
-// import Router from
+import Compose from './Components/Compose'
+import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +12,21 @@ class App extends Component {
       messages: messages,
       bulkSelect: 2
     }
+  }
+  newMessage = (e,subject, body) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    const newMessages = this.state.messages.slice(0)
+    const ID = newMessages.length + 1
+    console.log(ID + newMessages);
+    newMessages.push({
+      id: ID,
+      subject: subject,
+      read: false,
+      starred: false,
+      labels: []
+    })
+    this.setState({ messages: newMessages })
   }
   toggleClass = (message, class1) => {
     console.log('in toggleClass')
@@ -146,15 +162,11 @@ class App extends Component {
     this.setState({ messages: newMessages })
   }
   async componentDidMount() {
-    const response = await fetch(
-      'http://localhost:8082/api/messages'
-    )
+    const response = await fetch('http://localhost:8082/api/messages')
     const json = await response.json()
-    this.setState({messages: json._embedded.messages})
+    this.setState({ messages: json._embedded.messages })
   }
-  async pStar(){
-
-  }
+  async pStar() {}
   render() {
     return (
       <div className="App">
@@ -170,7 +182,13 @@ class App extends Component {
             countUnread={this.countUnread}
             addLabel={this.addLabel}
             removeLabel={this.removeLabel}
+            Compose={this.Compose}
           />
+        <Compose
+            newMessage={this.newMessage}
+            messages={this.state.messages}
+          />
+          <Route path="/compose" render={Compose} />
           <MessagesList
             messages={this.state.messages}
             toggleClass={this.toggleClass}
@@ -180,7 +198,7 @@ class App extends Component {
     )
   }
 }
- const messages = []
+const messages = []
 
 //[
 //   {
